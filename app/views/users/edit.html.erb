@@ -1,0 +1,17 @@
+<%= form_for @user do |f| %>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label(:role, "Vendedor") %>
+    <%= f.radio_button(:role, :seller, checked: true) %>
+    <%= f.label(:role, "Administrador") %>
+    <%= f.radio_button(:role, :admin) %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+<% end %>

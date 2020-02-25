@@ -1,0 +1,34 @@
+<div class="ls-login-parent">
+  <div class="ls-login-inner">
+    <div class="ls-login-container">
+      <div class="ls-login-box">
+        <% if notice %>
+          <div class="ls-alert-success alerts" role="alert"> <%= notice %> </div>
+        <% end %>
+        <% if alert %>
+          <div class="ls-alert-warning alerts" role="alert"> <%= alert %> </div>
+        <% end %>
+        <h1 class="ls-login-logo"><img title="Logo login" src="http://opensource.locaweb.com.br/locawebstyle/assets/images/locastyle/logo-locaweb.png"/></h1>
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <fieldset>
+
+              <label class="ls-label">
+                <b class="ls-label-text ls-hidden-accessible">Email</b>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"ls-login-bg-user ls-field-lg", type:"text", placeholder:"E-mail" %>
+              </label>
+
+              <label class="ls-label">
+                <b class="ls-label-text ls-hidden-accessible">Senha</b>
+                  <%= f.password_field :password, autocomplete: "current-password", class:"ls-login-bg-user ls-field-lg", placeholder:"Senha" %>
+              </label>
+
+              <%= f.submit "Entrar", class:"ls-btn-primary ls-btn-block ls-btn-lg" %>
+
+              <p class="ls-txt-center ls-login-signup">Esqueceu a senha? <br><a href="#">Contate o administrador</a></p>
+
+          </fieldset>
+        <% end %>
+      </div>
+    </div>
+  </div> 
+</div>

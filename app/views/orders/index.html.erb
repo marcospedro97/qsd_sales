@@ -1,0 +1,31 @@
+<h1 class="ls-title-intro ls-ico-text"><%= Order.model_name.human(count: 2) %></h1>
+
+<table class="ls-table">
+    <thead>
+      <tr>
+        <th><%= Order.human_attribute_name(:code) %></th>
+        <th><%= Order.human_attribute_name(:user_id) %></th>
+        <th><%= Order.human_attribute_name(:customer) %></th>
+        <th><%= Order.human_attribute_name(:product) %></th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @orders.each do |order| %>
+      <tr id="order-<%= order.id %>">
+        <td><%= order.code %></td>
+        <td><%= order.user.email %></td>
+        <td><%= order.customer.identification %></td>
+        <td><%= order.product_id %></td>
+        <td>
+          <%= link_to order_path(order), method: :get do %>
+            <i class="ls-ico-zoomin"></i><span class="sr-only">Visualizar</span>
+          <% end %>
+          <%= link_to edit_order_path(order) do %>
+            <i class="ls-ico-pencil"></i><span class="sr-only">Editar</span>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+    <% end %>
+</table>

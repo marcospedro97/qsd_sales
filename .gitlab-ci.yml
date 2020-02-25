@@ -1,0 +1,50 @@
+image: ruby:2.6.3
+
+variables:
+  RAILS_ENV: test
+  TZ: America/Sao_Paulo
+  NODE_VERSION: 12
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .ci_cache/
+    - node_modules/
+
+stages:
+  - tests
+  - quality assurance
+
+before_script:
+  - curl -sL https://deb.nodesource.com/setup_$NODE_VERSION.x | bash -
+  - apt install nodejs
+  - wget -q -O - https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+  - echo "deb https://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.list.d/yarn.list
+  - gem install bundler -v 2.1.4
+  - gem install bundler-audit
+  - bundle install --without production -j $(nproc) --path .ci_cache
+  - apt-get update -yq
+  - apt-get install -y yarn
+  - yarn install --check-files
+
+rspec:
+  stage: tests
+  except:
+    - tags
+  script:
+    - bundle exec rake db:drop db:create db:migrate
+    - bundle exec rspec
+
+rubocop:
+  stage: quality assurance
+  except:
+    - tags
+  script:
+    - bundle exec rubocop
+
+audit:
+  stage: quality assurance
+  except:
+    - tags
+  script:
+    - bundle-audit check --update

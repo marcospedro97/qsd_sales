@@ -1,0 +1,30 @@
+<%= form_with model: [@customer, @order], local: true, class: 'ls-form ls-form-horizontal row' do |form| %>
+  
+  <div class='ls-label col-md-6'>
+    <%= form.label :product_id, class: 'ls-label-text' %>
+    <div class="ls-custom-select">
+      <%= form.collection_select :product_id, @products, :id, :name, prompt: true, class: "ls-custom" %>
+    </div>
+  </div>
+
+  <div class='ls-label col-md-6'>
+    <%= form.label :plan_id, class: 'ls-label-text' %>
+      <div class='ls-custom-select'>
+        <%= form.collection_select :plan_id, @plans, :id, :name, prompt: true, class: 'ls-custom' %>%
+      </div>
+  </div>
+
+  <div class='ls-label col-md-6'>
+    <%= form.label :price_id, class: 'ls-label-text' %>
+    <div class='ls-custom-select'>
+      <%= form.collection_select :price_id, @prices, :id, :expose, prompt: true, class: 'ls-custom' %>
+    </div>
+  </div>
+
+  <div class='ls-label col-md-6'>
+    <%= form.label :coupon_name, 'Cupom' %>
+    <%= form.text_field :coupon_name %>
+  </div>
+  
+  <p><%= form.submit 'Efetivar', class: 'ls-btn blue-theme' %></p>
+<% end %>

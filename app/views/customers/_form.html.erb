@@ -1,0 +1,32 @@
+<%= form_with model: @customer, class: 'ls-form ls-form-horizontal row', local: true do |f| %>
+  <div class = 'ls-label col-md-12'>
+    <%= f.label :name %>
+    <%= f.text_field :name, placeholder: 'João da Silva' %>
+  </div>
+  <div class='ls-label col-md-12'>
+    <%= f.label :address %>
+    <%= f.text_field :address, placeholder: 'Av. Brasil, 148' %>
+  </div>
+  <div class='ls-label col-md-6'>
+    <%= f.label :document %>
+    <%= f.text_field :document, placeholder: '123.456.789-10' %>
+  </div>
+  <div class='ls-label col-md-6'>
+    <%= f.label :email %>
+    <%= f.text_field :email, placeholder: 'joao@email.com' %>
+  </div>
+  <div class='ls-label col-md-6'>  
+    <%= f.label :phone %>
+    <%= f.text_field :phone, placeholder: '(11)9999-9999' %>
+  </div>
+  <div class='ls-label col-md-6'>  
+    <%= f.label :birth_date %>
+    <%= f.date_field :birth_date %>
+  </div>
+  <div>
+    <div class='ls-actions-btn' >
+        <%= f.submit 'Salvar', class: 'ls-btn' %>
+        <%= link_to 'Cancelar', url_for(:back), class:"ls-btn-danger" %>
+    </div>
+  </div>
+<% end %>

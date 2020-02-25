@@ -1,0 +1,17 @@
+<table class="ls-table">
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Permissão</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td><%= user.role %></td>
+        <td><%= link_to 'Editar', edit_user_path(user), class: 'edit-button'%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

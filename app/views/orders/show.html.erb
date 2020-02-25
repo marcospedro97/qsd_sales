@@ -1,0 +1,44 @@
+<div class="ls-title-intro ls-ico-text">Pedido: <%= @order.code %></div>
+<span class="ls-tag"><div class="status">Status: <%= Order.human_attribute_name(@order.status) %></div></span>
+<%= "Preço Total: R$ #{@order.final_price}" %>
+<table class="ls-table">
+  <thead>
+    <tr>
+      <th><%= Order.human_attribute_name(:code) %></th>
+      <th><%= Order.human_attribute_name(:user_id) %></th>
+      <th><%= Order.human_attribute_name(:customer) %></th>
+      <th><%= Order.human_attribute_name(:product) %></th>
+      <th><%= Order.human_attribute_name(:plan) %></th>
+      <th><%= Order.human_attribute_name(:price) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @order.code %></td>
+      <td><%= @order.user.id %></td>
+      <td><%= @order.customer.identification %></td>
+      <td><%= @product.name %></td>
+      <td><%= @plan.name %></td>
+      <td><%= @price.expose %></td>
+    </tr>
+  </tbody>
+</table>
+
+<% if current_user.admin? || @order.user == current_user %>
+  <% if @order.cancelled? %>
+    <div class="reason">
+      <h3><%= Order.human_attribute_name(:cancellation_reason)%></h3>
+      <div class="why"><%= @order.cancellation_reason %></div>
+    </div>
+  <% end %>
+    <div class="button">
+      <% if @order.open? %>
+        <%= link_to 'Editar', edit_order_path(@order), class: "ls-btn blue-theme" %>
+        <%= link_to 'Cancelar', cancel_order_path(@order), class: "ls-btn red-delete"  %>
+        <% if current_user.admin? %>
+          <%= link_to 'Aprovar', approve_order_path(@order), method: :patch, class: "ls-btn-primary ls-ico-checkmark"  %>
+        <% end %>
+      <% end %>
+    </div>
+<% end %>
+

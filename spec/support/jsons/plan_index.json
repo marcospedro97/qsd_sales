@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Linux",
+    "description": "Descrição do teste básico",
+    "product_type_id": 1,
+    "details": "Detalhe básico",
+    "created_at": "2020-02-10T12:45:25.512Z",
+    "updated_at": "2020-02-10T12:45:25.512Z",
+    "status": "available"
+  },
+  {
+    "id": 2,
+    "name": "Windows",
+    "description": "Descrição teste profissional",
+    "product_type_id": 1,
+    "details": "Detalhe profissional",
+    "created_at": "2020-02-10T12:45:25.576Z",
+    "updated_at": "2020-02-10T12:45:25.576Z",
+    "status": "unavailable"
+  },
+  {
+    "id": 3,
+    "name": "TESTHOSPTEST41 LITE",
+    "description": "Descrição enxuta",
+    "product_type_id": 1,
+    "details": "Detalhe simplificado",
+    "created_at": "2020-02-10T12:45:25.661Z",
+    "updated_at": "2020-02-10T12:45:25.661Z",
+    "status": "available"
+  }
+]
